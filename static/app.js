@@ -1,6 +1,6 @@
 // Belly Button Biodiversity Challenge
 //const DATA_URL = "https://2u-data-curiculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
-const DATA_URL = "static/samples.json"
+const DATA_URL = "static/data/samples.json"
 
 
 function optionChanged(subject_id) {
@@ -54,7 +54,11 @@ function buildChartsAndMetadata(sample) {
     var metadataList = d3.select("#sample-metadata");
     metadataList.html("");
 
-    Object.entries(metadata).forEach(([key, value]) => {
+    metadata = data.metadata;
+    let resultArray = metadata.filter((sampleObj) => sampleObj.id == sample);
+    let result = resultArray[0];
+
+    Object.entries(result).forEach(([key, value]) => {
       metadataList.append("li").text(`${key}: ${value}`);
     });
   });
